@@ -1,6 +1,6 @@
 require("colors");
+const { guardarBD } = require("./helpers/guardarArchivo");
 const { inquirerMenu, pausa, leerInput } = require("./helpers/inquirer");
-//const Tarea = require("./models/tarea");
 const Tareas = require("./models/tareas");
 
 console.clear();
@@ -13,14 +13,16 @@ const main = async () => {
 
     switch (opt) {
       case "1":
-        const desc = await leerInput("Descripcion: ")
-        tareas.crearTarea( desc )
+        const desc = await leerInput("Descripcion: ");
+        tareas.crearTarea(desc);
         break;
       case "2":
         console.log(tareas.listadoArr);
         break;
     }
-
+    
+    //guardarBD(tareas.listadoArr);
+    
     await pausa();
   } while (opt !== "0");
 };
